@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-yarn 
+npm i
 
 yarn start
 ```

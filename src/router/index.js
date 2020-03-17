@@ -1,23 +1,50 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: '/',
+    redirect: '/login'
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/login/index.vue')
+  },
+  {
+    path: '/home',
+    name: 'home',
+    redirect: 'user/userlist',
+    component: () => import('../Layout/index.vue'),
+    children: [
+      {
+        path: '/user/userlist',
+        name: 'user',
+        component: () => import('../views/user/userlist.vue')
+      },
+      {
+        path: '/commodity/commoditylist',
+        name: 'commoditylist',
+        component: () => import('../views/commodity/commoditylist.vue')
+      },
+      {
+        path: '/report/orderreport',
+        name: 'orderrepoet',
+        component: () => import('../views/report/orderrepoet.vue')
+      },
+      {
+        path: '/report/consignreport',
+        name: 'consignrepoet',
+        component: () => import('../views/report/consignrepoet.vue')
+      },
+      {
+        path: '/img/imgupload',
+        name: 'imgupload',
+        component: () => import('../views/imgs/imgupload.vue')
+      }
+    ]
   }
 ];
 

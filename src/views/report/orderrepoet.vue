@@ -100,11 +100,16 @@ export default {
       val: true
     })
     let time = reactive({})
-    const getTime = async (val) => {
-      form.createTimeStart = val[0].getTime()
-      form.createTimeEnd = val[1].getTime()
-      await handleSearch()
-    }
+    const getTime = async val => {
+      if (val === null) {
+        form.createTimeStart = '';
+        form.createTimeEnd = '';
+      } else {
+        form.createTimeStart = val[0].getTime();
+        form.createTimeEnd = val[1].getTime();
+      }
+      await handleSearch();
+    };
     const handleSearch = () => {
       refs.pagination.back()
       root.$store.dispatch('getOrder', { page: 0, size: 25, ...form })

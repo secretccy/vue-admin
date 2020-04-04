@@ -46,7 +46,7 @@
           align="center"
           ><template slot-scope="scope">
             <img
-              :src="getSrc(scope.row)"
+              v-lazy="getSrc(scope.row)"
               alt=""
               style="width:40px;height:40px;border-radius:50%"
             />

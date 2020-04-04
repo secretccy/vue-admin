@@ -6,50 +6,47 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/login',
   },
   {
     path: '/login',
-    name: 'login',
-    component: () => import('../views/login/index.vue')
+    component: () => import('../views/login/index.vue'),
   },
   {
     path: '/home',
-    name: 'home',
     redirect: 'user/userlist',
     component: () => import('../Layout/index.vue'),
     children: [
       {
         path: '/user/userlist',
-        name: 'user',
-        component: () => import('../views/user/userlist.vue')
+        component: () => import('../views/user/userlist.vue'),
       },
       {
         path: '/commodity/commoditylist',
-        name: 'commoditylist',
-        component: () => import('../views/commodity/commoditylist.vue')
+        component: () => import('../views/commodity/commoditylist.vue'),
+      },
+      {
+        path: '/commodity/commodityinfo',
+        component: () => import('../views/commodity/commodityinfo.vue'),
       },
       {
         path: '/report/orderreport',
-        name: 'orderrepoet',
-        component: () => import('../views/report/orderrepoet.vue')
+        component: () => import('../views/report/orderrepoet.vue'),
       },
       {
         path: '/report/consignreport',
-        name: 'consignrepoet',
-        component: () => import('../views/report/consignrepoet.vue')
+        component: () => import('../views/report/consignrepoet.vue'),
       },
       {
         path: '/img/imgupload',
-        name: 'imgupload',
-        component: () => import('../views/imgs/imgupload.vue')
-      }
-    ]
-  }
+        component: () => import('../views/imgs/imgupload.vue'),
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
 });
 
 export default router;

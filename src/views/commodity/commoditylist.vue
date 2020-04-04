@@ -78,28 +78,31 @@
                            v-if="item.goods.status === 0 || item.goods.status === 4">编辑</el-button> -->
                 <el-button type="primary"
                            size="mini"
-                           @click="putawayhshop(item.goods.id)"
+                           @click="putawayhShop(item.goods.id)"
                            v-if="item.goods.status === 0 || item.goods.status === 4">上架</el-button>
                 <el-button type="danger"
                            size="mini"
-                           @click="deleteshop(item.goods.id)"
+                           @click="deleteShop(item.goods.id)"
                            v-if="item.goods.status === 0 || item.goods.status === 4">删除</el-button>
+                <el-button type="primary"
+                           size="mini"
+                           @click="watchShop(item.goods.id)">查看</el-button>
                 <el-button type="success"
                            size="mini"
                            v-if="item.goods.status === 1"
-                           @click="soldshop(item.goods.id)">售出</el-button>
+                           @click="soldShop(item.goods.id)">售出</el-button>
                 <el-button type="warning"
                            size="mini"
                            v-if="item.goods.status === 1"
-                           @click="unShelfshop(item.goods.id)">下架</el-button>
+                           @click="unshelfShop(item.goods.id)">下架</el-button>
                 <el-button type="info"
                            size="mini"
                            v-if="item.goods.status === 1"
-                           @click="lockshop(item.goods.id)">锁定</el-button>
+                           @click="lockShop(item.goods.id)">锁定</el-button>
                 <el-button type="info"
                            size="mini"
                            v-if="item.goods.status === 2"
-                           @click="lockshop(item.goods.id)">解锁</el-button>
+                           @click="lockShop(item.goods.id)">解锁</el-button>
               </div>
             </div>
             <div class="bottom-info">
@@ -129,7 +132,6 @@ import {
 } from '@vue/composition-api';
 
 export default {
-  name: 'commodity-list',
   components: {
     Pagination
   },
@@ -141,7 +143,7 @@ export default {
       status: '',
       goodsName: ''
     });
-    let currentPage = ref(1);
+
     let loading = ref(true);
     let pageSum = ref(0);
     const options = reactive([
@@ -212,6 +214,7 @@ export default {
     ]);
 
     const changePage = current => {
+
       root.$store.dispatch('getCommodity', {
         page: current,
         size: 20,
@@ -271,17 +274,17 @@ export default {
         });
       }
     };
-    const lockshop = val => {
+    const lockShop = val => {
       lock({ id: val }).then(res => {
         operation(res);
       });
     };
-    const unShelfshop = val => {
+    const unshelfShop = val => {
       unShelf({ ids: val }).then(res => {
         operation(res);
       });
     };
-    const soldshop = val => {
+    const soldShop = val => {
       root
         .$prompt('请输入买家ID', '', {
           confirmButtonText: '确定',
@@ -293,7 +296,7 @@ export default {
           });
         });
     };
-    const editshop = (val) => {
+    const editShop = (val) => {
       root.$router.push({
         path: '/commodity/commodityedit',
         query: {
@@ -301,12 +304,12 @@ export default {
         }
       })
     }
-    const putawayhshop = val => {
+    const putawayhShop = val => {
       putaway({ ids: val }).then(res => {
         operation(res);
       });
     };
-    const deleteshop = val => {
+    const deleteShop = val => {
       root
         .$confirm('是否删除此商品?', '', {
           confirmButtonText: '确定',
@@ -319,6 +322,9 @@ export default {
           });
         });
     };
+    const watchShop = val => {
+      root.$router.push({ path: `/commodity/commodityinfo?id=${val}` })
+    }
     commodityList = computed(() => root.$store.state.commodity.commodityList);
     loading = computed(() => root.$store.state.commodity.loading);
     pageSum.value = computed(() => root.$store.state.commodity.pageSum);
@@ -334,12 +340,13 @@ export default {
       options,
       pageSum,
       changePage,
-      putawayhshop,
-      deleteshop,
-      unShelfshop,
-      lockshop,
-      soldshop,
-      editshop
+      putawayhShop,
+      deleteShop,
+      unshelfShop,
+      lockShop,
+      soldShop,
+      editShop,
+      watchShop
     };
   }
 };

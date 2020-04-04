@@ -6,6 +6,8 @@ export default {
   },
   GET_DETAIL(state, action) {
     state.baseInfo = action.data;
-  
-  }
+  },
+  // GO_BACK(state, action) {
+  //   state.currentPage = action.data.page;
+  // },
 };

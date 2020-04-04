@@ -4,11 +4,12 @@ const state = {
   commodityList: [],
   loading: true,
   pageSum: 0,
-  baseInfo: {}
+  baseInfo: {},
+  
 };
 
 export default {
   actions,
   mutations,
-  state
+  state,
 };

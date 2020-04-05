@@ -28,6 +28,8 @@ export default {
           emit('consignPage', val - 1);
         case '#/img/imgupload':
           emit('imgPage', val - 1);
+        case '#/certificate/certificatelist':
+          emit('certificatePage', val - 1);
       }
 
     }

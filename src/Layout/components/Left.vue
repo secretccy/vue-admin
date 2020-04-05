@@ -7,27 +7,29 @@
         <span>{{ username }}</span><i @click="quit">退出</i>
       </div>
     </div>
-    <el-menu class="el-menu-vertical-demo"
-             background-color="#344a5f"
-             text-color="#fff"
-             :router="true"
-             active-text-color="rgb(29, 165, 122)"
-             :default-active="defaultIndex"
-             style="width:200px">
-      <el-submenu v-for="item in navList"
-                  :key="item.id"
-                  :index="item.id">
-        <template slot="title">
-          <i :class="item.icon"></i>
-          <span>{{ item.name }}</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item v-for="ele in item.nav"
-                        :key="ele.id"
-                        :index="ele.path">{{ ele.title }}</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-    </el-menu>
+    <div class="nav-list">
+      <el-menu class="el-menu-vertical-demo"
+               background-color="#344a5f"
+               text-color="#fff"
+               :router="true"
+               active-text-color="rgb(29, 165, 122)"
+               :default-active="defaultIndex"
+               style="width:200px">
+        <el-submenu v-for="item in navList"
+                    :key="item.id"
+                    :index="item.id">
+          <template slot="title">
+            <i :class="item.icon"></i>
+            <span>{{ item.name }}</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item v-for="ele in item.nav"
+                          :key="ele.id"
+                          :index="ele.path">{{ ele.title }}</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+      </el-menu>
+    </div>
   </div>
 </template>
 <script>
@@ -83,11 +85,23 @@ export default {
       },
       {
         id: '4',
+        name: '证书管理',
+        icon: 'el-icon-notebook-2',
+        nav: [
+          {
+            id: '4-1',
+            path: '/certificate/certificatelist',
+            title: '证书列表'
+          },
+        ]
+      },
+      {
+        id: '5',
         name: '图片管理',
         icon: 'el-icon-picture-outline',
         nav: [
           {
-            id: '4-1',
+            id: '5-1',
             path: '/img/imgupload',
             title: '图片上传'
           },
@@ -136,6 +150,8 @@ export default {
   height: 100%;
   width: 200px;
   background-color: #344a5f;
+  display: flex;
+  flex-direction: column;
   .nav-header {
     height: 160px;
     display: flex;
@@ -157,6 +173,13 @@ export default {
         cursor: pointer;
       }
     }
+  }
+  .nav-list {
+    flex: 1;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+      }
   }
 }
 </style>

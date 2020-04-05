@@ -212,7 +212,6 @@ export default {
         label: '回退完成'
       }
     ]);
-
     const changePage = current => {
 
       root.$store.dispatch('getCommodity', {

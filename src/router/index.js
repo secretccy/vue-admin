@@ -41,6 +41,10 @@ const routes = [
         path: '/img/imgupload',
         component: () => import('../views/imgs/imgupload.vue'),
       },
+      {
+        path: '/certificate/certificatelist',
+        component: () => import('../views/certificate/certificatelist.vue'),
+      },
     ],
   },
 ];

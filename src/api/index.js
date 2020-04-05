@@ -14,7 +14,10 @@ export const sold = (data) => post('/goods/v4/sold', data);
 export const getOrderList = (data) => get('/report/order', data);
 export const getConsignList = (data) => get('report/consignment', data);
 export const getDetailInfo = (data) => post('/goods/v4/getDetail', data);
-
+export const getCertificateList = (data) =>
+  get('/appraisal/certificate/findPage', data);
+export const createPdf = (data) =>
+  get('/appraisal/certificate/createPdf', data);
 export const getImgList = (data) => {
   let newUrl = '';
   for (let key in data) {

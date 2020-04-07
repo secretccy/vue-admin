@@ -1,5 +1,8 @@
 <template>
   <div class="certificate-list">
+    <div class="search">
+
+    </div>
     <div class="list">
       <el-table :data="certificateList"
                 border
@@ -19,6 +22,11 @@
         </el-table-column>
         <el-table-column prop="proposer"
                          label="申请人姓名"
+                         width="250"
+                         align="center">
+        </el-table-column>
+        <el-table-column prop="applicantPhone"
+                         label="申请人联系方式"
                          width="250"
                          align="center">
         </el-table-column>
@@ -75,7 +83,7 @@
                  alt=""
                  v-for="(item,index) in JSON.parse(scope.row.imgJson)"
                  :key="index"
-                 style="width:60px;height:60px;margin-right:20px" />
+                 style="width:50px;height:50px;margin-right:20px" />
 
           </template>
         </el-table-column>
@@ -89,7 +97,8 @@
                        @click="create(scope.row.id)">生成</el-button>
             <el-button type="primary"
                        size="small"
-                       @click="openPdf(scope.row.filePath)">下载</el-button>
+                       @click="openPdf(scope.row.filePath)"
+                       :disabled="scope.row.filePath?false:true">下载</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -166,12 +175,15 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 10px 20px 60px 20px;
+  padding: 20px 20px 60px 20px;
   .list {
     width: 100%;
     height: 100%;
 
     position: relative;
+  }
+  .search {
+    height: 50px;
   }
 }
 </style>

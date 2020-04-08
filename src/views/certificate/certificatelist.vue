@@ -94,7 +94,8 @@
           <template slot-scope="scope">
             <el-button type="success"
                        size="small"
-                       @click="create(scope.row.id)">生成</el-button>
+                       @click="create(scope.row.id)"
+                       :disabled="scope.row.filePath?true:false">生成</el-button>
             <el-button type="primary"
                        size="small"
                        @click="openPdf(scope.row.filePath)"
